@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: pro
+  # 日期格式化
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+#    time-zone: GMT+8
+
+mybatis-plus:
+  configuration:
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    db-config:
+      id-type: ASSIGN_ID
+  # 设置主键策略为自增
+  global-config:
+    db-config:
+      id-type: auto
+
+logging:
+  level:
+    root: info
+# 七牛云相关
+qiniu:
+  # 存储空间所绑定的域名
+  domain: "http://img.lonely.icu"
+  template-name: "mental-project/question_bank_template.json"
