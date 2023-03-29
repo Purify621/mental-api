@@ -60,10 +60,10 @@ public class ArticleServiceImpl implements ArticleService {
         articleDao.selectPage(page,queryWrapper);
         // 返回结果
         Map<String,Object> result = new HashMap<String,Object>();
-        result.put("total",page.getTotal());
-        result.put("currentPage",pageQuery.getCurrentPage());
-        result.put("pageSize",pageQuery.getPageSize());
-        result.put("data",page.getRecords());
+        result.put("total", page.getTotal());
+        result.put("currentPage", pageQuery.getCurrentPage());
+        result.put("pageSize", pageQuery.getPageSize());
+        result.put("data", page.getRecords());
         return result;
     }
 

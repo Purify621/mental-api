@@ -2,13 +2,11 @@ package com.mental.controller;
 
 import com.mental.common.Result;
 import com.mental.common.ResultCode;
-import com.mental.dao.ArticleDao;
 import com.mental.pojo.Article;
 import com.mental.pojo.PageQuery;
 import com.mental.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -58,7 +56,6 @@ public class AritcleController {
     @GetMapping("/pageQuery")
     public Result selectPageQuery(PageQuery pageQuery){
         try {
-            System.out.println(pageQuery+"1111");
             Map<String,Object> map = articleService.selectPageQuery(pageQuery);
             return new Result(ResultCode.SUCCESS,map);
         }catch (Exception e){

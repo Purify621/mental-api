@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mental.common.Result;
 import com.mental.common.ResultCode;
 import com.mental.pojo.Answer;
+import com.mental.pojo.PageQuery;
 import com.mental.pojo.Question;
 import com.mental.pojo.QuestionBank;
 import com.mental.service.AnswerService;
@@ -161,6 +162,28 @@ public class QuestionBankController {
         return new Result(ResultCode.SUCCESS, url);
     }
 
+    /**
+     * 分页查询
+     * @param pageQuery
+     * @return
+     */
+    @GetMapping("/pageQuery")
+    public Result getAllPageQuery(PageQuery pageQuery){
+        try {
+            log.info("分页查询：{}", pageQuery);
+            Map<String, Object> map = questionBankService.getAllPageQuery(pageQuery);
+            return new Result(ResultCode.SUCCESS, map);
+        } catch (Exception e){
+            e.printStackTrace();
+            return new Result(ResultCode.ERROR);
+        }
+    }
+
+    /**
+     * 删除试题
+     * @param id
+     * @return
+     */
     @DeleteMapping("/{id}")
     public Result deleteById(@PathVariable Long id) {
         questionBankService.deleteById(id);
