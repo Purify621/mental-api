@@ -49,6 +49,14 @@ public class AritcleController {
     }
 
     /**
+     * 更新信息
+     * @param article
+     * @return
+     */
+    @PostMapping("/update")
+    public Result update(@RequestBody Article article){ return articleService.update(article); }
+
+    /**
      * 分页查询
      * @param pageQuery 分页查询对象
      * @return

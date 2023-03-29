@@ -11,6 +11,7 @@ import com.mental.pojo.PageQuery;
 import com.mental.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.HashMap;
 import java.util.List;
@@ -55,19 +56,34 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     }
 
     /**
-     * 根据id查询
+     * 根据id查询信息
      * @param id
      * @return
      */
     @Override
     public Result selectById(Integer id) {
         Announcement announcement = announcementDao.selectById(id);
-        announcement.setTotal(announcement.getTotal()+1);
+        // 执行 +1 操作
+        Integer total = announcement.getTotal();
+        announcement.setTotal(total+1);
         QueryWrapper<Announcement> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(Announcement::getId,id);
         announcementDao.update(announcement,queryWrapper);
-        return new Result(ResultCode.SUCCESS, announcementDao);
+        return new Result(ResultCode.SUCCESS,announcement);
     }
+
+    /**
+     * 更新操作
+     * @param announcement
+     * @return
+     */
+    public Result update(Announcement announcement){
+        QueryWrapper<Announcement> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(Announcement::getId,announcement.getId());
+        announcementDao.update(announcement,queryWrapper);
+        return  new Result(ResultCode.SUCCESS,"更新成功");
+    }
+
 
     /**
      * 添加

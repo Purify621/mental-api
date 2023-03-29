@@ -21,9 +21,4 @@ public interface AnnouncementDao extends BaseMapper<Announcement> {
     @Select("select id, title, type, data , date ,status from tb_announcement")
     List<Announcement> selectAllS();
 
-    /**
-     * 根据id查询文章状态
-     */
-    @Select("select id,status from tb_announcement where id = #{id}")
-    Announcement selectStatusById(Integer id);
 }

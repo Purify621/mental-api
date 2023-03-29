@@ -18,6 +18,10 @@ public class AnnouncementController {
     @Autowired
     private AnnouncementService announcementService;
 
+    /**
+     * 查询全部，但不包括已禁用的
+     * @return
+     */
     @GetMapping("/all")
     public Result selectAll(){ return announcementService.selectAll(); }
 
@@ -45,10 +49,20 @@ public class AnnouncementController {
     public Result add(@RequestBody Announcement announcement){ return announcementService.add(announcement);}
 
     /**
-     * 根据id查找当前信息
+     * 根据id获取信息
+     * @param id
+     * @return
      */
     @GetMapping("{id}")
-    public Result selectById(@RequestBody Integer id){ return announcementService.selectById(id); }
+    public Result selectById(@PathVariable Integer id){return announcementService.selectById(id);};
+
+    /**
+     * 更新数据
+     * @param announcement
+     * @return
+     */
+    @PostMapping("/update")
+    public Result update(@RequestBody Announcement announcement){ return announcementService.update(announcement);}
 
     /**
      * 根据id删除

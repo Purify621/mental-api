@@ -1,6 +1,7 @@
 package com.mental.service;
 
 import com.mental.common.Result;
+import com.mental.pojo.Announcement;
 import com.mental.pojo.Article;
 import com.mental.pojo.PageQuery;
 
@@ -37,7 +38,12 @@ public interface ArticleService {
      */
     Result selectAll();
 
-
+    /**
+     * 更新信息
+     * @param article
+     * @return
+     */
+    Result update(Article article);
 
     /**
      * 查询所有包含已禁用的

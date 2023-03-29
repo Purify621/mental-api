@@ -21,10 +21,12 @@ public interface AnnouncementService {
      */
     Map<String,Object> selectPageQuery(PageQuery pageQuery);
 
+    Result selectById(Integer id);
+
     /**
      * 根据id查询信息
      */
-    Result selectById(Integer id);
+//    Result selectById(Integer id);
 
     /**
      * 添加
@@ -32,6 +34,13 @@ public interface AnnouncementService {
      * @return
      */
     Result add(Announcement announcement);
+
+    /**
+     * 更新数据
+     * @param announcement
+     * @return
+     */
+    Result update(Announcement announcement);
 
     /**
      * 根据id删除

@@ -1,6 +1,7 @@
 package com.mental.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mental.common.Result;
 import com.mental.common.ResultCode;
@@ -76,6 +77,14 @@ public class ArticleServiceImpl implements ArticleService {
     public Result selectAll() {
         List<Article> articles = articleDao.selectAll();
         return new Result(ResultCode.SUCCESS, articles);
+    }
+
+    @Override
+    public Result update(Article article) {
+        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(Article::getId,article.getId());
+        articleDao.update(article,queryWrapper);
+        return new Result(ResultCode.SUCCESS,"更新成功");
     }
 
     /**
