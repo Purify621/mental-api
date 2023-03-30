@@ -13,14 +13,14 @@ public class PageQuery {
     private Integer pageSize;
 
     //学号
-    private Long sid;
+    private Integer sid;
     //性别
     private String gender;
     //年龄
     private Integer age;
 
     //工号
-    private Long tid;
+    private Integer tid;
     //职称
     private String title;
     //学校

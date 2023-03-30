@@ -55,7 +55,7 @@ public class StudentServiceImpl implements StudentService {
 
         //生成jwt
         UserDetail userDetail = (UserDetail) authenticate.getPrincipal();
-        String key = userDetail.getStatus() + ":" + userDetail.getUsername();
+        String key = userDetail.getStatus() + ":" + userDetail.getUsername() + ":" + userDetail.getId();
         String jwt = JwtUtil.createJWT(key);
 
         Student stu = studentDao.selectById(userDetail.getId());
