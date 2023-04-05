@@ -9,6 +9,8 @@ public interface UserResultService {
 
     Result selectByUserId(PageQuery pageQuery);
 
+    Result selectAll(PageQuery pageQuery);
+
     Result deleteById(Integer id);
 
     Result selectQid(Integer id,Integer uid);

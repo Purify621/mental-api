@@ -47,7 +47,7 @@ public class UserResultServiceImpl implements UserResultService {
 
         //条件
         LambdaQueryWrapper<UserResult> queryWrapper = new LambdaQueryWrapper<UserResult>();
-        queryWrapper.eq(UserResult::getUserId, pageQuery.getSid());
+        queryWrapper.like(pageQuery.getSid()!=null,UserResult::getUserId,pageQuery.getSid());
 
         userResultDao.selectPage(page, queryWrapper);
 
@@ -56,6 +56,23 @@ public class UserResultServiceImpl implements UserResultService {
         resultMap.put("data", page.getRecords());
 
         return new Result(ResultCode.SUCCESS, resultMap);
+    }
+
+    /**
+     * 管理员分页查询 获取所有用户答题信息
+     * @return
+     */
+    @Override
+    public Result selectAll(PageQuery pageQuery) {
+        Page<UserResult> page = new Page<>(pageQuery.getCurrentPage(),pageQuery.getPageSize());
+        LambdaQueryWrapper<UserResult> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.like(pageQuery.getPname()!=null,UserResultP::getPname,pageQuery.getPname());
+        userResultDao.selectPage(page,lambdaQueryWrapper);
+        Map<String,Object> result = new HashMap<>();
+        result.put("total",page.getTotal());
+        result.put("data",page.getRecords());
+
+        return new Result(ResultCode.SUCCESS,result);
     }
 
     /**
@@ -70,9 +87,9 @@ public class UserResultServiceImpl implements UserResultService {
     }
 
     /**
-     *
-     * @param id
-     * @param uid
+     * 根据id和uid查询答题数据
+     * @param id 试题id
+     * @param uid 用户id
      * @return
      */
     @Override

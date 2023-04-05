@@ -28,4 +28,7 @@ public class PageQuery {
 
     // 文章类型
     private String type;
+
+    // 答题的用户名
+    private String pname;
 }

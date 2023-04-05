@@ -46,6 +46,16 @@ public class UserResultController {
     }
 
     /**
+     * 管理员的分页查询
+     * @param pageQuery
+     * @return
+     */
+    @GetMapping("/all")
+    public Result select(PageQuery pageQuery){
+       return userResultService.selectAll(pageQuery);
+    }
+
+    /**
      * 获取当前用户的所有答题结果
      */
     @GetMapping("/get")
@@ -62,6 +72,16 @@ public class UserResultController {
     @DeleteMapping("/{id}")
     public Result deleteById(@PathVariable Integer id){
         return userResultService.deleteById(id);
+    }
+
+    /**
+     * 根据用户 id 和试题 id查询相关信息
+     * @param result
+     * @return
+     */
+    @PostMapping("/qid")
+    public Result selectQid(@RequestBody UserResult result){
+        return userResultService.selectQid(result.getQuestionId(),result.getUserId());
     }
 
     /**
@@ -85,8 +105,5 @@ public class UserResultController {
 
     }
 
-    @PostMapping("/qid")
-    public Result selectQid(@RequestBody UserResult result){
-        return userResultService.selectQid(result.getQuestionId(),result.getUserId());
-    }
+
 }
