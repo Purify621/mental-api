@@ -1,6 +1,7 @@
 package com.mental.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mental.common.Result;
 import com.mental.pojo.PageQuery;
 import com.mental.pojo.QuestionBank;
 import org.springframework.stereotype.Service;
@@ -37,4 +38,11 @@ public interface QuestionBankService extends IService<QuestionBank> {
      * @param id
      */
     void deleteById(Long id);
+
+    /**
+     * 根据上传文件进行题库添加
+     * @param map
+     * @return
+     */
+    Result upload(Map map);
 }

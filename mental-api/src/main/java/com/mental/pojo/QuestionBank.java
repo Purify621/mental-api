@@ -18,12 +18,20 @@ public class QuestionBank {
     private String picturebox; // 方图片
     private String pictureinfo; // 图片信息
 
-    public QuestionBank(String title, String details, String picture, String picturebox, String pictureinfo) {
+    public QuestionBank() {
     }
 
     public QuestionBank(String title, String details) {
         this.title = title;
         this.details = details;
+    }
+
+    public QuestionBank(String title, String details, String picture, String picturebox, String pictureinfo) {
+        this.title = title;
+        this.details = details;
+        this.picture = picture;
+        this.picturebox = picturebox;
+        this.pictureinfo = pictureinfo;
     }
 
     public QuestionBank(Long id, String title, String details, Integer number, Integer status, String picture, String picturebox, String pictureinfo) {
